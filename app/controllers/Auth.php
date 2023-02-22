@@ -12,4 +12,10 @@ class Auth extends Controller{
         $this->view("auth/register");
         $this->view("templates/footer");
     }
+
+    // public function login(){
+    //     $user = $this->model("User_model")->getUser($_POST);
+    //     if($this->model("User_model")->auth($_POST)){ 
+    //     }
+    // }
 }

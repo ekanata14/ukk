@@ -1,6 +1,6 @@
 <?php
 
-define("BURL", "/spp");
+define("BURL", "/ukk");
 
 define("DB_HOST", "localhost");
 define("DB_USER", "root");
