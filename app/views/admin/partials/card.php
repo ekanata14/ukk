@@ -6,7 +6,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                 Total Siswa</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $data['totalSiswa'] ?></div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $fixedData['totalSiswa'] ?></div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-users fa-2x text-gray-300"></i>
@@ -24,7 +24,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                 Total Petugas</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $data['totalPetugas']?></div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $fixedData['totalPetugas']?></div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-user fa-2x text-gray-300"></i>

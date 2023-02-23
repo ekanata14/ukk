@@ -1,21 +1,33 @@
 <?php
 
 class Admin extends Controller{
+    protected $fixedData;
+    public function setFixedData(){
+        $this->fixedData = [
+            'totalSiswa' => $this->model("User_model")->countAllSiswa(),
+            'totalPetugas' => $this->model("User_model")->countAllPetugas(), 
+        ];
+
+        return $this->fixedData;
+    }
     public function index(){
+        $data = [
+
+        ];
         $this->view("templates/header");
-        $this->view("admin/index");
+        $this->view("admin/index", $data, $this->setFixedData());
         $this->view("templates/footer");
     }
+
+    
 
     // Petugas Controller methods
     public function petugas(){
         $data = [
             'petugas' => $this->model("User_model")->getAllPetugas(),
-            'totalSiswa' => $this->model("User_model")->countAllSiswa(),
-            'totalPetugas' => $this->model("User_model")->countAllPetugas(),
-        ];
+                  ];
         $this->view("templates/header");
-        $this->view("admin/petugas/index", $data);
+        $this->view("admin/petugas/index", $data, $this->setFixedData());
         $this->view("templates/footer");
     }
 
