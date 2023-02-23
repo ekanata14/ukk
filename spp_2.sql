@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Feb 22, 2023 at 11:52 PM
+-- Generation Time: Feb 23, 2023 at 07:14 AM
 -- Server version: 5.7.33
--- PHP Version: 8.1.10
+-- PHP Version: 7.4.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -63,7 +64,27 @@ CREATE TABLE `pengguna` (
 --
 
 INSERT INTO `pengguna` (`id`, `username`, `pass`, `role`) VALUES
-(1, 'admin', 'admin', '0');
+(1, 'admin', 'admin', '0'),
+(11, 'petugas_2', 'ptgs2', '1'),
+(13, 'petugas_3', 'ptgs3', '1');
+
+--
+-- Triggers `pengguna`
+--
+DELIMITER $$
+CREATE TRIGGER `deletePetugas` AFTER DELETE ON `pengguna` FOR EACH ROW DELETE FROM petugas WHERE id = OLD.id
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `editPetugas` AFTER UPDATE ON `pengguna` FOR EACH ROW UPDATE petugas SET nama = new.username, pass = new.pass, pengguna_id = old.id WHERE id = old.id
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `insertPetugas` AFTER INSERT ON `pengguna` FOR EACH ROW BEGIN
+INSERT INTO petugas set nama = new.username, pass = new.pass, pengguna_id = new.id;
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -74,6 +95,7 @@ INSERT INTO `pengguna` (`id`, `username`, `pass`, `role`) VALUES
 CREATE TABLE `petugas` (
   `id` int(11) NOT NULL,
   `nama` varchar(255) NOT NULL,
+  `pass` varchar(255) NOT NULL,
   `pengguna_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -81,8 +103,10 @@ CREATE TABLE `petugas` (
 -- Dumping data for table `petugas`
 --
 
-INSERT INTO `petugas` (`id`, `nama`, `pengguna_id`) VALUES
-(1, 'admin', 1);
+INSERT INTO `petugas` (`id`, `nama`, `pass`, `pengguna_id`) VALUES
+(6, 'admin', 'admin', 1),
+(11, 'petugas_2', 'ptgs2', 11),
+(13, 'petugas_3', 'ptgs3', 13);
 
 -- --------------------------------------------------------
 
@@ -145,7 +169,8 @@ ALTER TABLE `pengguna`
 --
 ALTER TABLE `petugas`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `pengguna_id` (`pengguna_id`);
+  ADD KEY `pengguna_id` (`pengguna_id`),
+  ADD KEY `password` (`pass`);
 
 --
 -- Indexes for table `siswa`
@@ -185,13 +210,13 @@ ALTER TABLE `pembayaran`
 -- AUTO_INCREMENT for table `pengguna`
 --
 ALTER TABLE `pengguna`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `petugas`
 --
 ALTER TABLE `petugas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `siswa`
