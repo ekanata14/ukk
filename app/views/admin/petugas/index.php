@@ -26,24 +26,70 @@
                         <?php require_once(__DIR__ . "/../partials/card.php");?>
 
                     <!-- Content Row -->
-
+                    <a href="<?= BURL ?>/admin/tambahPetugas" class="btn btn-primary mb-3">Tambah Petugas</a>
                     <div class="row">
-                       <div class="col-4 table-responsive">
+                    <div class="col-6 table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Nama</th>
+                                            <th>Id Pengguna</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr> 
+                                            <th>No</th>
+                                            <th>Nama</th>
+                                            <th>Id Pengguna</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                        <?php $i = 1; ?>
+                                        <?php foreach($data['petugas'] as $petugas): ?>
+                                        <tr>
+                                            <td><?= $i ?></td>
+                                            <td><?= $petugas['nama']?></td>
+                                            <td><?= $petugas['pengguna_id']?></td>
+                                            <td>
+                                                <a href="<?= BURL ?>/admin/editPetugas/<?= $petugas['id']?>" class="btn btn-warning">Edit</a>
+                                                <form action="<?= BURL?>/admin/deletePetugas" method="POST" class="d-inline">
+                                                    <input type="hidden" name="id" value="<?= $petugas['pengguna_id'] ?>">
+                                                    <button class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus <?= $petugas['nama']?>?')" type="submit">Delete</button> 
+                                                </form>
+                                            </td>
+                                        </tr>
+                                        <?php $i++ ?>
+                                        <?php endforeach ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                       <!-- <div class="col-6 table-responsive">
                         <table class="table table-striped">
                             <thead>
-                                <tr>Nama</tr>
-                                <tr>Pengguna_id</tr>
+                                <th>Nama</th>
+                                <th>Pengguna_id</th>
+                                <th>Action</th>
                             </thead>
                             <tbody>
                                 <?php foreach($data['users'] as $user):?>
                                     <tr>
                                         <td><?= $user['nama']?></td>
                                         <td><?= $user['pengguna_id']?></td>
+                                        <td>
+                                            <a href="" class="btn btn-warning">Edit</a>
+                                            <form action="<?= BURL?>/admin/deletePetugas" class="d-inline">
+                                            <input type="hidden" value="<?= $user['id']?>">
+                                            <button class="btn btn-danger" onclick="returnconfirm('Yakin ingin menghapus <?= $user['nama']?>?'">Delete</button> 
+                                            </form>
+                                        </td>
                                     </tr>
                                 <?php endforeach ?>
                             </tbody>
                         </table>
-                       </div> 
+                       </div>  -->
                     </div>
                 <!-- /.container-fluid -->
 
