@@ -13,7 +13,7 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
+            <li class="nav-item <?= ($data['section'] == 'dashboard') ? 'active' : '' ?>">
                 <a class="nav-link" href="<?= BURL ?>/admin">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
@@ -28,7 +28,7 @@
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
+            <li class="nav-item <?= ($data['section'] == 'petugas') ? 'active' : '' ?>">
                 <a class="nav-link collapsed" href="<?= BURL ?>/admin/petugas">
                     <i class="fas fa-fw fa-user"></i>
                     <span>Petugas</span>
@@ -43,10 +43,28 @@
             </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="<?= BURL ?>/siswa">
+            <li class="nav-item <?= ($data['section'] == 'siswa') ? 'active' : '' ?>">
+                <a class="nav-link collapsed" href="<?= BURL ?>/admin/siswa">
                     <i class="fas fa-fw fa-users"></i>
                     <span>Siswa</span>
+                </a>
+                <!-- <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Custom Utilities:</h6>
+                        <a class="collapse-item" href="utilities-color.html">Colors</a>
+                        <a class="collapse-item" href="utilities-border.html">Borders</a>
+                        <a class="collapse-item" href="utilities-animation.html">Animations</a>
+                        <a class="collapse-item" href="utilities-other.html">Other</a>
+                    </div>
+                </div> -->
+            </li>
+
+            <!-- Nav Item - Utilities Collapse Menu -->
+            <li class="nav-item <?= ($data['section'] == 'kelas') ? 'active' : '' ?>">
+                <a class="nav-link collapsed" href="<?= BURL ?>/admin/kelas">
+                    <i class="fas fa-fw fa-users"></i>
+                    <span>Kelas</span>
                 </a>
                 <!-- <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Feb 23, 2023 at 07:14 AM
+-- Generation Time: Feb 24, 2023 at 03:50 AM
 -- Server version: 5.7.33
 -- PHP Version: 7.4.19
 
@@ -31,8 +31,37 @@ SET time_zone = "+00:00";
 CREATE TABLE `kelas` (
   `id` int(11) NOT NULL,
   `nama` varchar(255) NOT NULL,
+  `kompetensi_keahlian` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `kelas`
+--
+
+INSERT INTO `kelas` (`id`, `nama`, `kompetensi_keahlian`) VALUES
+(1, 'XII RPL 2', 1),
+(2, 'XII MM 1', 3);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `komka`
+--
+
+CREATE TABLE `komka` (
+  `id` int(11) NOT NULL,
+  `kode` varchar(255) NOT NULL,
   `kompetensi_keahlian` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `komka`
+--
+
+INSERT INTO `komka` (`id`, `kode`, `kompetensi_keahlian`) VALUES
+(1, 'RPL', 'Rekayasa Perangkat Lunak'),
+(2, 'TKJ', 'Teknik Komputer dan Jaringan'),
+(3, 'MM', 'Multimedia');
 
 -- --------------------------------------------------------
 
@@ -150,6 +179,13 @@ CREATE TABLE `transaksi` (
 -- Indexes for table `kelas`
 --
 ALTER TABLE `kelas`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `kompetensi_keahlian` (`kompetensi_keahlian`);
+
+--
+-- Indexes for table `komka`
+--
+ALTER TABLE `komka`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -198,7 +234,13 @@ ALTER TABLE `transaksi`
 -- AUTO_INCREMENT for table `kelas`
 --
 ALTER TABLE `kelas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `komka`
+--
+ALTER TABLE `komka`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `pembayaran`
@@ -233,6 +275,12 @@ ALTER TABLE `transaksi`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `kelas`
+--
+ALTER TABLE `kelas`
+  ADD CONSTRAINT `kelas_ibfk_1` FOREIGN KEY (`kompetensi_keahlian`) REFERENCES `komka` (`id`);
 
 --
 -- Constraints for table `petugas`
