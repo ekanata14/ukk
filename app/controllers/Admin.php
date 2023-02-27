@@ -11,6 +11,7 @@ class Admin extends Controller{
         return $this->fixedData;
     }
     public function index(){
+        Middleware::auth();
         $data = [
             'section' => "dashboard",
         ];
@@ -92,6 +93,7 @@ class Admin extends Controller{
         $data = [
             'title' => "Tambah Siswa",
             'section' => 'siswa',
+            'kelas' => $this->model("Kelas_model")->getAllKelas(),
         ];
         $this->view("templates/header");
         $this->view("admin/siswa/add", $data);
@@ -150,6 +152,7 @@ class Admin extends Controller{
         $data = [
             'title' => "Tambah Kelas",
             'section' => 'kelas',
+            'komka' => $this->model("Kelas_model")->getAllKomka(),
         ];
         $this->view("templates/header");
         $this->view("admin/kelas/add", $data);
@@ -167,7 +170,8 @@ class Admin extends Controller{
 
     public function editKelas($id){
         $data = [
-            'petugas' => $this->model("Kelas_model")->getKelasById($id),
+            'kelas' => $this->model("Kelas_model")->getKelasById($id),
+            'komka' => $this->model("Kelas_model")->getAllKomka(),
             'title' => "Edit Kelas",
             'section' => 'kelas',
         ];
@@ -185,7 +189,7 @@ class Admin extends Controller{
     }
 
     public function deleteKelas(){
-        if($this->model("Kelas_model")->deletekelas($_POST) > 0){ 
+        if($this->model("Kelas_model")->deleteKelas($_POST) > 0){ 
             Redirect::to("admin/kelas");
         } else{
             Redirect::to("admin/kelas");

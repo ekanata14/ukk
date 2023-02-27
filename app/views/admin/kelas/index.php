@@ -26,15 +26,15 @@
                         <?php require_once(__DIR__ . "/../partials/card.php");?>
 
                     <!-- Content Row -->
-                    <a href="<?= BURL ?>/admin/tambahPetugas" class="btn btn-primary mb-3">Tambah Kelas</a>
+                    <a href="<?= BURL ?>/admin/tambahKelas" class="btn btn-primary mb-3">Tambah Kelas</a>
                     <div class="row">
                     <div class="col-6 table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Nama</th>
-                                            <th>Id Pengguna</th>
+                                            <th>Nama Kelas</th>
+                                            <th>Kompetensi Keahlian</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -42,7 +42,7 @@
                                         <tr> 
                                             <th>No</th>
                                             <th>Nama</th>
-                                            <th>Id Pengguna</th>
+                                            <th>Komptensi Keahlian</th>
                                             <th>Action</th>
                                         </tr>
                                     </tfoot>
@@ -51,13 +51,13 @@
                                         <?php foreach($data['kelas'] as $kelas): ?>
                                         <tr>
                                             <td><?= $i ?></td>
-                                            <td><?= $petugas['nama']?></td>
-                                            <td><?= $petugas['pengguna_id']?></td>
+                                            <td><?= $kelas['nama']?></td>
+                                            <td><?= $kelas['kompetensi_keahlian']?></td>
                                             <td>
-                                                <a href="<?= BURL ?>/admin/editPetugas/<?= $petugas['id']?>" class="btn btn-warning">Edit</a>
-                                                <form action="<?= BURL?>/admin/deletePetugas" method="POST" class="d-inline">
-                                                    <input type="hidden" name="id" value="<?= $petugas['pengguna_id'] ?>">
-                                                    <button class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus <?= $petugas['nama']?>?')" type="submit">Delete</button> 
+                                                <a href="<?= BURL ?>/admin/editKelas/<?= $kelas['id']?>" class="btn btn-warning">Edit</a>
+                                                <form action="<?= BURL?>/admin/deleteKelas" method="POST" class="d-inline">
+                                                    <input type="hidden" name="id" value="<?= $kelas['id'] ?>">
+                                                    <button class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus <?= $kelas['nama']?>?')" type="submit">Delete</button> 
                                                 </form>
                                             </td>
                                         </tr>

@@ -19,6 +19,7 @@ class Auth extends Controller{
             $_SESSION['user'] = [
                 'username' => $user['username'],
                 'role' => $user['role'],
+                'status' => 'login',
             ];
            if($user['role'] == '0'){
             Redirect::to("/admin");

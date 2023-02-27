@@ -26,7 +26,7 @@
                         <?php require_once(__DIR__ . "/../partials/card.php");?>
 
                     <!-- Content Row -->
-                    <a href="<?= BURL ?>/admin/tambahPetugas" class="btn btn-primary mb-3">Tambah Siswa</a>
+                    <a href="<?= BURL ?>/admin/tambahSiswa" class="btn btn-primary mb-3">Tambah Siswa</a>
                     <div class="row">
                     <div class="col-6 table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">

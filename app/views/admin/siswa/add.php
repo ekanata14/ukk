@@ -14,7 +14,7 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Petugas | <?= $data['title'] ?></h1>
+                        <h1 class="h3 mb-0 text-gray-800">Siswa | <?= $data['title'] ?></h1>
                         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                     </div>
@@ -24,13 +24,33 @@
                         <div class="col-6">
                         <form action="<?= BURL ?>/admin/tambahPetugasAct" method="POST">
                         <div class="form-group">  
-                            <label for="username">Username</label>
-                            <input type="text" class="form-control" name="username">  
+                            <label for="username">NISN</label>
+                            <input type="number" class="form-control" name="nisn">  
                         </div>
                         <div class="form-group">
-                            <label for="password">Password</label>  
-                            <input type="password" class="form-control" name="password"> 
-                        </div> 
+                            <label for="nis">NIS</label>  
+                            <input type="number" class="form-control" name="nis"> 
+                        </div>
+                        <div class="form-group">
+                            <label for="nama">Nama</label>  
+                            <input type="text" class="form-control" name="nama"> 
+                        </div>
+                        <div class="form-group">
+                            <label for="alamat">Alamat</label>  
+                            <input type="text" class="form-control" name="alamat"> 
+                        </div>
+                        <div class="form-group">
+                            <label for="telepon">Telepon</label>  
+                            <input type="number" class="form-control" name="telepon"> 
+                        </div>
+                        <div class="form-group">
+                            <label for="telepon">Kelas</label>   
+                            <select name="kelas" id="kelas" class="form-control">
+                                <?php foreach($data['kelas'] as $kelas): ?>
+                                    <option value="<?= $kelas['id'] ?>"><?= $kelas['nama'] ?></option>
+                                <?php endforeach ?>
+                            </select>
+                        </div>
                         <button class="btn btn-primary mt-2 float-right" type="submit">Tambah <i class="fas fa-pen ml-1"></i></button> 
                         </div>
                        </form>

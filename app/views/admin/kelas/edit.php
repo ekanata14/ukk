@@ -23,14 +23,22 @@
                     <div class="row">
                         <div class="col-6">
                         <form action="<?= BURL ?>/admin/editPetugasAct" method="POST">
-                        <input type="hidden" name="id" value="<?= $data['petugas']['id'] ?>"> 
+                        <input type="hidden" name="id" value="<?= $data['kelas']['id'] ?>"> 
                         <div class="form-group">  
-                            <label for="username">Username</label>
-                            <input type="text" class="form-control" name="username" value="<?= $data['petugas']['nama'] ?>">  
+                            <label for="nama_kelas">Nama Kelas</label>
+                            <input type="text" class="form-control" name="nama_kelas" value="<?= $data['kelas']['nama'] ?>">  
                         </div>
                         <div class="form-group">
-                            <label for="password">Password</label>  
-                            <input type="password" class="form-control" name="password" value="<?= $data['petugas']['pass'] ?>"> 
+                            <label for="komka">Kompetensi Keahlian</label>  
+                            <select name="komka" id="komka" class="form-control">
+                                <?php foreach($data['komka'] as $komka): ?>
+                                    <?php if($komka['id'] == $data['kelas']['kompetensi_keahlian']){ ?>
+                                        <option value="<?= $komka['id'] ?>" selected><?= $komka['kode'] ?></option>
+                                    <?php } else{ ?>
+                                        <option value="<?= $komka['id'] ?>"><?= $komka['kode'] ?></option>
+                                    <?php } ?>
+                                <?php endforeach ?>
+                            </select>
                         </div> 
                         <button class="btn btn-warning mt-2 float-right" type="submit">Edit <i class="fas fa-pen ml-1"></i></button> 
                         </div>

@@ -2,6 +2,7 @@
 
 class Home extends Controller{
     public function index(){
+        Middleware::auth();
         $data = [
             'users' => $this->model("User_model")->getAllUsers(),
         ];
