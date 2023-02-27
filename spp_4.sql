@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Feb 24, 2023 at 03:50 AM
+-- Generation Time: Feb 27, 2023 at 12:22 AM
 -- Server version: 5.7.33
--- PHP Version: 7.4.19
+-- PHP Version: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -21,6 +20,17 @@ SET time_zone = "+00:00";
 --
 -- Database: `spp`
 --
+
+DELIMITER $$
+--
+-- Procedures
+--
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insertSiswa` (IN `in_nisn` VARCHAR(255), IN `in_nis` VARCHAR(255), IN `in_nama` VARCHAR(255), IN `in_alamat` TEXT, IN `in_telepon` VARCHAR(255), IN `in_kelas` INT)   BEGIN
+INSERT INTO pengguna VALUES(NULL, username = in_nis, pass = in_nis, role = 2);
+INSERT INTO siswa VALUES(NULL, nisn = in_nisn, nis = in_nis, nama = in_nama, alamat = in_alamat, telepon = in_telepon, kelas_id = in_kelas);
+END$$
+
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -40,7 +50,8 @@ CREATE TABLE `kelas` (
 
 INSERT INTO `kelas` (`id`, `nama`, `kompetensi_keahlian`) VALUES
 (1, 'XII RPL 2', 1),
-(2, 'XII MM 1', 3);
+(2, 'XII MM 1', 3),
+(3, 'XII RPL 1', 1);
 
 -- --------------------------------------------------------
 
@@ -234,7 +245,7 @@ ALTER TABLE `transaksi`
 -- AUTO_INCREMENT for table `kelas`
 --
 ALTER TABLE `kelas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `komka`
