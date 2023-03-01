@@ -14,7 +14,7 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Kelas | <?= $data['title'] ?></h1>
+                        <h1 class="h3 mb-0 text-gray-800">Petugas | <?= $data['title'] ?></h1>
                         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                     </div>
@@ -22,25 +22,21 @@
                     <!-- Content Row -->
                     <div class="row">
                         <div class="col-6">
-                        <form action="<?= BURL ?>/admin/tambahKelasAct" method="POST">
+                        <form action="<?= BURL ?>/admin/editPembayaranAct" method="POST">
+                        <input type="hidden" name="id" value="<?= $data['pembayaran']['id'] ?>"> 
                         <div class="form-group">  
-                            <label for="kelas">Nama Kelas</label>
-                            <input type="text" class="form-control" name="nama_kelas">  
+                            <label for="nama_kelas">Tahun Ajaran</label>
+                            <input type="text" class="form-control" name="tahun_ajaran" value="<?= $data['pembayaran']['tahun_ajaran'] ?>">  
                         </div>
                         <div class="form-group">
-                            <label for="komka">Kompetensi Keahlian</label>   
-                            <select name="komka" id="komka" class="form-control">
-                                <?php foreach($data['komka'] as $komka): ?>
-                                    <option value="<?= $komka['id'] ?>"><?= $komka['kode'] ?></option>
-                                <?php endforeach ?>
-                            </select>
+                            <label for="nominal">Nominal</label>  
+                            <input type="number" class="form-control" name="nominal" value="<?= $data['pembayaran']['nominal'] ?>">   
                         </div> 
-                        <button class="btn btn-primary mt-2 float-right" type="submit">Tambah <i class="fas fa-pen ml-1"></i></button> 
+                        <button class="btn btn-warning mt-2 float-right" type="submit">Edit <i class="fas fa-pen ml-1"></i></button> 
                         </div>
                        </form>
                     </div>
-
-                    </div>
+                </div>
                 <!-- /.container-fluid -->
 
             </div>

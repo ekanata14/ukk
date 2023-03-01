@@ -22,18 +22,22 @@
                     <!-- Content Row -->
                     <div class="row">
                         <div class="col-6">
-                        <form action="<?= BURL ?>/admin/tambahPetugasAct" method="POST">
+                        <form action="<?= BURL ?>/admin/tambahSiswaAct" method="POST">
                         <div class="form-group">  
                             <label for="username">NISN</label>
                             <input type="number" class="form-control" name="nisn">  
                         </div>
                         <div class="form-group">
                             <label for="nis">NIS</label>  
-                            <input type="number" class="form-control" name="nis"> 
+                            <input type="number" class="form-control" name="username"> 
                         </div>
                         <div class="form-group">
                             <label for="nama">Nama</label>  
                             <input type="text" class="form-control" name="nama"> 
+                        </div>
+                        <div class="form-group">
+                            <label for="nama">Password</label>  
+                            <input type="password" class="form-control" name="pass">
                         </div>
                         <div class="form-group">
                             <label for="alamat">Alamat</label>  
@@ -51,6 +55,15 @@
                                 <?php endforeach ?>
                             </select>
                         </div>
+                        <div class="form-group">
+                            <label for="telepon">Tahun Ajaran</label>   
+                            <select name="pembayaran" id="kelas" class="form-control">
+                                <?php foreach($data['pembayaran'] as $pembayaran): ?>
+                                    <option value="<?= $pembayaran['id'] ?>"><?= $pembayaran['tahun_ajaran'] ?></option>
+                                <?php endforeach ?>
+                            </select>
+                        </div>
+                        <input type="hidden" name="role" id="role" value="2">
                         <button class="btn btn-primary mt-2 float-right" type="submit">Tambah <i class="fas fa-pen ml-1"></i></button> 
                         </div>
                        </form>
@@ -83,22 +96,5 @@
         <i class="fas fa-angle-up"></i>
     </a>
 
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
-                </div>
-            </div>
-        </div>
-    </div>
+    <!-- Modal -->
+    <?php require_once(__DIR__ . "/../partials/modal.php");

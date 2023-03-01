@@ -6,6 +6,7 @@ class Admin extends Controller{
         $this->fixedData = [
             'totalSiswa' => $this->model("User_model")->countAllSiswa(),
             'totalPetugas' => $this->model("User_model")->countAllPetugas(), 
+            'totalKelas' => $this->model("Kelas_model")->countAllKelas()
         ];
 
         return $this->fixedData;
@@ -42,9 +43,13 @@ class Admin extends Controller{
     }
 
     public function tambahPetugasAct(){
-        // var_dump($_POST);
-        if($this->model("User_model")->tambahPetugas($_POST) > 0){
-            Redirect::to("admin/petugas");
+        if($this->model("User_model")->tambahPengguna($_POST) > 0){
+            $id_pengguna = $this->model("User_model")->getLastInsertedId();
+            if($this->model("User_model")->tambahPetugas($_POST, $id_pengguna) > 0){
+                Redirect::to("admin/petugas");
+            } else{
+                Redirect::to("admin/petugas");
+            }
         } else{
             Redirect::to("admin/petugas");
         }
@@ -56,6 +61,7 @@ class Admin extends Controller{
             'title' => "Edit Petugas",
             'section' => 'petugas',
         ];
+        
         $this->view("templates/header");
         $this->view("admin/petugas/edit", $data);
         $this->view("templates/footer");
@@ -63,9 +69,11 @@ class Admin extends Controller{
 
     public function editPetugasAct(){
         if($this->model("User_model")->editPetugas($_POST) > 0){ 
-            Redirect::to("admin/petugas");
-        } else{
-            Redirect::to("admin/petugas");
+            if($this->model("User_model")->editPengguna($_POST) > -1){
+                Redirect::to("admin/petugas");
+            } else{
+                Redirect::to("admin/petugas");
+            }
         }
     }
 
@@ -80,7 +88,7 @@ class Admin extends Controller{
     // Siswa Controller methods
     public function siswa(){
         $data = [
-            'petugas' => $this->model("User_model")->getAllSiswa(),
+            'siswa' => $this->model("User_model")->getAllSiswa(),
             'section' => 'siswa',
         ];
         
@@ -94,6 +102,7 @@ class Admin extends Controller{
             'title' => "Tambah Siswa",
             'section' => 'siswa',
             'kelas' => $this->model("Kelas_model")->getAllKelas(),
+            'pembayaran' => $this->model("Pembayaran_model")->getAllPembayaran()
         ];
         $this->view("templates/header");
         $this->view("admin/siswa/add", $data);
@@ -101,38 +110,55 @@ class Admin extends Controller{
     }
 
     public function tambahSiswaAct(){
-        // var_dump($_POST);
-        if($this->model("User_model")->tambahPetugas($_POST) > 0){
-            Redirect::to("admin/petugas");
+        if($this->model("User_model")->tambahPengguna($_POST) > 0){
+            $id_pengguna = $this->model("User_model")->getLastInsertedId();
+            if($this->model("User_model")->tambahSiswa($_POST, $id_pengguna) > 0){
+                Redirect::to("admin/siswa");
+            } else{
+                Redirect::to("admin/siswa");
+            }
         } else{
-            Redirect::to("admin/petugas");
+            Redirect::to("admin/siswa");
         }
     }
-
+    
     public function editSiswa($id){
         $data = [
-            'petugas' => $this->model("User_model")->getSiswaById($id),
+            'siswa' => $this->model("User_model")->getSiswaById($id),
             'title' => "Edit Siswa",
             'section' => 'siswa',
+            'kelas' => $this->model("Kelas_model")->getAllKelas(),
+            'pembayaran' => $this->model("Pembayaran_model")->getAllPembayaran()
         ];
         $this->view("templates/header");
         $this->view("admin/siswa/edit", $data);
         $this->view("templates/footer");
     } 
-
+    
     public function editSiswaAct(){
         if($this->model("User_model")->editSiswa($_POST) > 0){ 
-            Redirect::to("admin/siswa");
+            if($this->model("User_model")->editPengguna($_POST) > 0 || $this->model("User_model")->editPengguna($_POST) > -1){
+                Redirect::to("admin/siswa");
+                // echo "Seko";
+            } else{
+                Redirect::to("admin/siswa");
+                // echo "gagal";
+            }
         } else{
             Redirect::to("admin/siswa");
+            // echo "Gagal";
         }
-    }
+    } 
 
-    public function deleteSiswa(){
-        if($this->model("User_model")->deleteSiswa($_POST) > 0){ 
-            Redirect::to("admin/petugas");
+    public function deleteSiswaAct(){
+        if($this->model("User_model")->deletePengguna($_POST) > 0){
+            if($this->model("User_model")->deleteSiswa($_POST) > 0){ 
+                Redirect::to("admin/siswa");
+            } else{
+                Redirect::to("admin/siswa");
+            }
         } else{
-            Redirect::to("admin/petugas");
+            echo "Gagal";
         }
     }
 
@@ -193,6 +219,65 @@ class Admin extends Controller{
             Redirect::to("admin/kelas");
         } else{
             Redirect::to("admin/kelas");
+        }
+    }
+
+    public function pembayaran(){
+        $data = [
+            'title' => "Pembayaran",
+            'section' => 'pembayaran',
+            'pembayaran' => $this->model("Pembayaran_model")->getAllPembayaran(),
+        ];
+
+        $this->view("templates/header", $data);
+        $this->view("admin/pembayaran/index", $data, $this->setFixedData());
+        $this->view("templates/footer");
+    }
+
+    public function tambahPembayaran(){
+        $data = [
+            'title' => "Pembayaran",
+            'section' => 'pembayaran',
+        ];
+
+        $this->view("templates/header", $data);
+        $this->view("admin/pembayaran/add", $data);
+        $this->view("templates/footer");
+    }
+
+    public function editPembayaran($id){
+        $data = [
+            'title' => "Edit Pembayaran",
+            'section' => 'pembayaran',
+            'pembayaran' => $this->model("Pembayaran_model")->getDataPembayaranById($id),
+        ];
+
+        $this->view("templates/header", $data);
+        $this->view("admin/pembayaran/edit", $data);
+        $this->view("templates/footer");
+    }
+
+    public function tambahPembayaranAct(){
+        if($this->model("Pembayaran_model")->tambahPembayaran($_POST) > 0){
+            Redirect::to("admin/pembayaran");
+        } else{
+            Redirect::to("admin/pembayaran");            
+        }
+    }
+
+    public function editPembayaranAct(){
+        if($this->model("Pembayaran_model")->editPembayaran($_POST) > 0){
+            Redirect::to("admin/pembayaran");
+        } else{
+            Redirect::to("admin/pembayaran");
+        }
+    }
+
+    public function deletePembayaranAct(){
+        if($this->model("Pembayaran_model")->deletePembayaran($_POST) > 0){
+            Redirect::to("admin/pembayaran");
+        } else{
+            Redirect::to("admin/pembayaran");
         }
     }
 }

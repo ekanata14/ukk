@@ -23,14 +23,15 @@
                     <div class="row">
                         <div class="col-6">
                         <form action="<?= BURL ?>/admin/tambahPetugasAct" method="POST">
-                        <div class="form-group">  
-                            <label for="username">Username</label>
-                            <input type="text" class="form-control" name="username">  
-                        </div>
-                        <div class="form-group">
-                            <label for="password">Password</label>  
-                            <input type="password" class="form-control" name="password"> 
-                        </div> 
+                            <div class="form-group">  
+                                <label for="username">Username</label>
+                                <input type="text" class="form-control" name="username">  
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>  
+                                <input type="password" class="form-control" name="pass"> 
+                            </div> 
+                            <input type="hidden" name="role" id="role" value="1">
                         <button class="btn btn-primary mt-2 float-right" type="submit">Tambah <i class="fas fa-pen ml-1"></i></button> 
                         </div>
                        </form>
@@ -63,22 +64,5 @@
         <i class="fas fa-angle-up"></i>
     </a>
 
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
-                </div>
-            </div>
-        </div>
-    </div>
+    <!-- Modal -->
+    <?php require_once(__DIR__ . "/../partials/modal.php");

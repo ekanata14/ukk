@@ -28,4 +28,10 @@ class Auth extends Controller{
            }
         }
     }
+
+    public function logout(){
+        session_unset();
+        session_destroy();
+        Redirect::to("auth");
+    }
 }

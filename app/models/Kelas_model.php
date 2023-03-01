@@ -15,6 +15,11 @@ class Kelas_model{
         return $this->db->resultAll();
     }
 
+    public function countAllKelas(){
+        $this->db->query("SELECT * FROM $this->kelas");
+        return $this->db->rowCount();
+    }
+
     public function getAllKomka(){
         $this->db->query("SELECT * FROM $this->komka");
         return $this->db->resultAll();
@@ -35,7 +40,7 @@ class Kelas_model{
     }
 
     public function editKelas($data){
-        $query = "UPDATE $this->kelas SET name = :nama_kelas, kompetensi_keahlian = :komka WHERE id = :id";
+        $query = "UPDATE $this->kelas SET nama = :nama_kelas, kompetensi_keahlian = :komka WHERE id = :id";
         $this->db->query($query);
         $this->db->bind("nama_kelas", $data['nama_kelas']);
         $this->db->bind("komka", $data['komka']);

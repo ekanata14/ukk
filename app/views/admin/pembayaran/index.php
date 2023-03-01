@@ -14,7 +14,7 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Siswa</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Pembayaran</h1>
                         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                     </div>
@@ -26,57 +26,38 @@
                         <?php require_once(__DIR__ . "/../partials/card.php");?>
 
                     <!-- Content Row -->
-                    <a href="<?= BURL ?>/admin/tambahSiswa" class="btn btn-primary mb-3">Tambah Siswa</a>
+                    <a href="<?= BURL ?>/admin/tambahPembayaran" class="btn btn-primary mb-3">Tambah Pembayaran</a>
                     <div class="row">
-                    <div class="col-12 table-responsive">
+                    <div class="col-6 table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>NISN</th>
-                                            <th>NIS</th>
-                                            <th>Nama</th>
-                                            <th>Alamat</th>
-                                            <th>Telepon</th>
-                                            <th>Kelas</th>
-                                            <th>Id Pengguna</th>
-                                            <th>Pembayaran</th>
+                                            <th>Tahun Ajaran</th>
+                                            <th>Nominal</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr> 
                                             <th>No</th>
-                                            <th>NISN</th>
-                                            <th>NIS</th>
-                                            <th>Nama</th>
-                                            <th>Alamat</th>
-                                            <th>Telepon</th>
-                                            <th>Kelas</th>
-                                            <th>Id Pengguna</th>
-                                            <th>Pembayaran</th>
+                                            <th>Tahun Ajaran</th>
+                                            <th>Nominal</th>
                                             <th>Action</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
                                         <?php $i = 1; ?>
-                                        <?php foreach($data['siswa'] as $siswa): ?>
+                                        <?php foreach($data['pembayaran'] as $pembayaran): ?>
                                         <tr>
                                             <td><?= $i ?></td>
-                                            <td><?= $siswa['nisn']?></td>
-                                            <td><?= $siswa['nis']?></td>
-                                            <td><?= $siswa['nama']?></td>
-                                            <td><?= $siswa['alamat']?></td>
-                                            <td><?= $siswa['telepon']?></td>
-                                            <td><?= $siswa['kelas_id']?></td>
-                                            <td><?= $siswa['pengguna_id']?></td>
-                                            <td><?= $siswa['pembayaran_id']?></td>
+                                            <td><?= $pembayaran['tahun_ajaran']?></td>
+                                            <td><?= $pembayaran['nominal']?></td>
                                             <td>
-                                                <a href="<?= BURL ?>/admin/editSiswa/<?= $siswa['id_siswa']?>" class="btn btn-warning">Edit</a>
-                                                <form action="<?= BURL ?>/admin/deleteSiswaAct" method="POST" class="d-inline">
-                                                    <input type="hidden" name="id" value="<?= $siswa['id_siswa'] ?>">
-                                                    <input type="hidden" name="pengguna_id" value="<?= $siswa['pengguna_id'] ?>">
-                                                    <button class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus <?= $siswa['nama']?>?')" type="submit">Delete</button> 
+                                                <a href="<?= BURL ?>/admin/editPembayaran/<?= $pembayaran['id']?>" class="btn btn-warning">Edit</a>
+                                                <form action="<?= BURL?>/admin/deletePembayaranAct" method="POST" class="d-inline">
+                                                    <input type="hidden" name="id" value="<?= $pembayaran['id'] ?>">
+                                                    <button class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus <?= $pembayaran['tahun_ajaran']?>?')" type="submit">Delete</button> 
                                                 </form>
                                             </td>
                                         </tr>
@@ -138,3 +119,4 @@
 
     <!-- Modal -->
     <?php require_once(__DIR__ . "/../partials/modal.php");
+

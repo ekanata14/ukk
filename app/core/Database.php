@@ -43,6 +43,10 @@ class Database{
         $this->stmt->bindValue($param, $value, $type);
     }
 
+    public function getLastInsertedId(){
+        return $this->dbh->lastInsertId();
+    }
+
     public function query($query){
         $this->stmt = $this->dbh->prepare($query);
     }

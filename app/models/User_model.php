@@ -10,6 +10,10 @@ class User_model{
         $this->db = new Database();
     }
 
+    public function getLastInsertedId(){
+        return $this->db->getLastInsertedId();
+    }
+
     public function getAllUsers(){
         $this->db->query("SELECT * FROM $this->petugas");
         return $this->db->resultAll();
@@ -54,19 +58,48 @@ class User_model{
         return $this->db->result();
     }
 
-    public function tambahPetugas($data){
-        $query = "INSERT INTO $this->pengguna VALUES(NULL, :username, :password, '1')";
+    public function getSiswaById($id){
+        $this->db->query("SELECT * FROM $this->siswa INNER JOIN $this->pengguna ON $this->siswa.pengguna_id = $this->pengguna.id WHERE $this->siswa.id_siswa = :id");
+        $this->db->bind("id", $id);
+        return $this->db->result();
+    }
+
+    public function tambahPengguna($data){
+        $this->db->query("INSERT INTO $this->pengguna VALUES(NULL, :username, :pass, :role)");
+        $this->db->bind("username", $data['username']);
+        $this->db->bind("pass", $data['pass']);
+        $this->db->bind("role", $data['role']);
+        return $this->db->rowCount();
+    }
+
+    public function editPengguna($data){
+        $this->db->query("UPDATE pengguna SET username = :username, pass = :pass WHERE id = :pengguna_id");
+        $this->db->bind("username", $data['username']);
+        $this->db->bind("pass", $data['pass']);
+        $this->db->bind("pengguna_id", $data['pengguna_id']);
+        return $this->db->rowCount(); 
+    }
+
+    public function deletePengguna($data){
+        $this->db->query("DELETE FROM $this->pengguna WHERE id = :pengguna_id");
+        $this->db->bind("pengguna_id", $data['pengguna_id']);
+        return $this->db->rowCount();
+    }
+
+    public function tambahPetugas($data, $id_pengguna){
+        $query = "INSERT INTO $this->petugas VALUES(NULL, :username, :pass, :pengguna_id)";
         $this->db->query($query);
         $this->db->bind("username", $data['username']);
-        $this->db->bind("password", $data['password']);
+        $this->db->bind("pass", $data['pass']);
+        $this->db->bind("pengguna_id", $id_pengguna);
         return $this->db->rowCount();
     }
 
     public function editPetugas($data){
-        $query = "UPDATE $this->pengguna SET username = :username, pass = :pass, role = '1' WHERE id = :id";
+        $query = "UPDATE $this->petugas SET nama = :nama, pass = :pass WHERE id = :id";
         $this->db->query($query);
-        $this->db->bind("username", $data['username']);
-        $this->db->bind("pass", $data['password']);
+        $this->db->bind("nama", $data['username']);
+        $this->db->bind("pass", $data['pass']);
         $this->db->bind("id", $data['id']);
         return $this->db->rowCount();
     }
@@ -78,25 +111,36 @@ class User_model{
         return $this->db->rowCount();
     }
 
-    public function tambahSiswa($data){
-        $query = "INSERT INTO $this->pengguna VALUES(NULL, :username, :password, '2')";
+    public function tambahSiswa($data, $id_pengguna){
+        $query = "INSERT INTO $this->siswa VALUES(NULL, :nisn, :nis, :nama, :alamat, :telepon, :kelas, :id_pengguna, :pembayaran)";
         $this->db->query($query);
-        $this->db->bind("username", $data['username']);
-        $this->db->bind("password", $data['password']);
+        $this->db->bind("nisn", $data['nisn']);
+        $this->db->bind("nis", $data['username']);
+        $this->db->bind("nama", $data['nama']);
+        $this->db->bind("alamat", $data['alamat']);
+        $this->db->bind("telepon", $data['telepon']);
+        $this->db->bind("kelas", $data['kelas']);
+        $this->db->bind("id_pengguna", $id_pengguna);
+        $this->db->bind("pembayaran", $data['pembayaran']);
         return $this->db->rowCount();
     }
 
     public function editSiswa($data){
-        $query = "UPDATE $this->pengguna SET username = :username, pass = :pass, role = '2' WHERE id = :id";
+        $query = "UPDATE $this->siswa SET nisn = :nisn, nis = :nis, nama = :nama, alamat = :alamat, telepon = :telepon, kelas_id = :kelas, pembayaran_id = :pembayaran WHERE id_siswa = :id";
         $this->db->query($query);
-        $this->db->bind("username", $data['username']);
-        $this->db->bind("pass", $data['password']);
         $this->db->bind("id", $data['id']);
+        $this->db->bind("nisn", $data['nisn']);
+        $this->db->bind("nis", $data['username']);
+        $this->db->bind("nama", $data['nama']);
+        $this->db->bind("alamat", $data['alamat']);
+        $this->db->bind("telepon", $data['telepon']);
+        $this->db->bind("kelas", $data['kelas']);
+        $this->db->bind("pembayaran", $data['pembayaran']);
         return $this->db->rowCount();
     }
 
     public function deleteSiswa($data){
-        $query = "DELETE FROM $this->pengguna WHERE id = :id";
+        $query = "DELETE FROM $this->siswa WHERE id_siswa = :id";
         $this->db->query($query);
         $this->db->bind("id", $data['id']);
         return $this->db->rowCount();
