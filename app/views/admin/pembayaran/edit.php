@@ -64,4 +64,4 @@
     </a>
 
     <!-- Modal -->
-    <?php require_once(__DIR__ . "/../partials/modal.php");
+    <?php require_once(__DIR__ . "/../partials/modal.php");?>

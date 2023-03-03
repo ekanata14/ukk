@@ -15,8 +15,7 @@
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Petugas</h1>
-                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                     </div>
 
                     <!-- Content Row -->
@@ -26,6 +25,7 @@
                         <?php require_once(__DIR__ . "/../partials/card.php");?>
 
                     <!-- Content Row -->
+                    <?php Flasher::flash();?>
                     <a href="<?= BURL ?>/admin/tambahPetugas" class="btn btn-primary mb-3">Tambah Petugas</a>
                     <div class="row">
                     <div class="col-6 table-responsive">
@@ -66,30 +66,6 @@
                                     </tbody>
                                 </table>
                             </div>
-                       <!-- <div class="col-6 table-responsive">
-                        <table class="table table-striped">
-                            <thead>
-                                <th>Nama</th>
-                                <th>Pengguna_id</th>
-                                <th>Action</th>
-                            </thead>
-                            <tbody>
-                                <?php foreach($data['users'] as $user):?>
-                                    <tr>
-                                        <td><?= $user['nama']?></td>
-                                        <td><?= $user['pengguna_id']?></td>
-                                        <td>
-                                            <a href="" class="btn btn-warning">Edit</a>
-                                            <form action="<?= BURL?>/admin/deletePetugas" class="d-inline">
-                                            <input type="hidden" value="<?= $user['id']?>">
-                                            <button class="btn btn-danger" onclick="returnconfirm('Yakin ingin menghapus <?= $user['nama']?>?'">Delete</button> 
-                                            </form>
-                                        </td>
-                                    </tr>
-                                <?php endforeach ?>
-                            </tbody>
-                        </table>
-                       </div>  -->
                     </div>
                 <!-- /.container-fluid -->
 
@@ -118,4 +94,4 @@
     </a>
 
     <!-- Modal -->
-    <?php require_once(__DIR__ . "/../partials/modal.php");
+    <?php require_once(__DIR__ . "/../partials/modal.php"); ?>

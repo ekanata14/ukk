@@ -1,3 +1,9 @@
 body{
     background-color: black;
 }
+
+@media print{
+    .sidebar, .card-group{
+        display: none;
+    }   
+}

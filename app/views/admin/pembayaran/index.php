@@ -26,6 +26,7 @@
                         <?php require_once(__DIR__ . "/../partials/card.php");?>
 
                     <!-- Content Row -->
+                    <?php Flasher::flash();?>
                     <a href="<?= BURL ?>/admin/tambahPembayaran" class="btn btn-primary mb-3">Tambah Pembayaran</a>
                     <div class="row">
                     <div class="col-6 table-responsive">
@@ -66,30 +67,6 @@
                                     </tbody>
                                 </table>
                             </div>
-                       <!-- <div class="col-6 table-responsive">
-                        <table class="table table-striped">
-                            <thead>
-                                <th>Nama</th>
-                                <th>Pengguna_id</th>
-                                <th>Action</th>
-                            </thead>
-                            <tbody>
-                                <?php foreach($data['users'] as $user):?>
-                                    <tr>
-                                        <td><?= $user['nama']?></td>
-                                        <td><?= $user['pengguna_id']?></td>
-                                        <td>
-                                            <a href="" class="btn btn-warning">Edit</a>
-                                            <form action="<?= BURL?>/admin/deletePetugas" class="d-inline">
-                                            <input type="hidden" value="<?= $user['id']?>">
-                                            <button class="btn btn-danger" onclick="returnconfirm('Yakin ingin menghapus <?= $user['nama']?>?'">Delete</button> 
-                                            </form>
-                                        </td>
-                                    </tr>
-                                <?php endforeach ?>
-                            </tbody>
-                        </table>
-                       </div>  -->
                     </div>
                 <!-- /.container-fluid -->
 
@@ -118,5 +95,5 @@
     </a>
 
     <!-- Modal -->
-    <?php require_once(__DIR__ . "/../partials/modal.php");
+    <?php require_once(__DIR__ . "/../partials/modal.php");?>
 

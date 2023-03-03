@@ -64,6 +64,12 @@ class User_model{
         return $this->db->result();
     }
 
+    public function getAllSiswaByKelasId($kelas_id){
+        $this->db->query("SELECT * FROM $this->siswa WHERE kelas_id = :kelas_id");
+        $this->db->bind("kelas_id", $kelas_id);
+        return $this->db->resultAll();
+    }
+
     public function tambahPengguna($data){
         $this->db->query("INSERT INTO $this->pengguna VALUES(NULL, :username, :pass, :role)");
         $this->db->bind("username", $data['username']);

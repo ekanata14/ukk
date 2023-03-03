@@ -26,6 +26,7 @@
                         <?php require_once(__DIR__ . "/../partials/card.php");?>
 
                     <!-- Content Row -->
+                    <?php Flasher::flash();?>
                     <a href="<?= BURL ?>/admin/tambahSiswa" class="btn btn-primary mb-3">Tambah Siswa</a>
                     <div class="row">
                     <div class="col-12 table-responsive">
@@ -137,4 +138,4 @@
     </a>
 
     <!-- Modal -->
-    <?php require_once(__DIR__ . "/../partials/modal.php");
+    <?php require_once(__DIR__ . "/../partials/modal.php"); ?>

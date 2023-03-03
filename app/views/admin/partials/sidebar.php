@@ -2,7 +2,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= BURL ?>/admin">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <!-- <i class="fas fa-laugh-wink"></i> -->
                 </div>
@@ -33,13 +33,6 @@
                     <i class="fas fa-fw fa-user"></i>
                     <span>Petugas</span>
                 </a>
-                <!-- <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Components:</h6>
-                        <a class="collapse-item" href="buttons.html">Buttons</a>
-                        <a class="collapse-item" href="cards.html">Cards</a>
-                    </div>
-                </div> -->
             </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->
@@ -48,52 +41,35 @@
                     <i class="fas fa-fw fa-users"></i>
                     <span>Siswa</span>
                 </a>
-                <!-- <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Utilities:</h6>
-                        <a class="collapse-item" href="utilities-color.html">Colors</a>
-                        <a class="collapse-item" href="utilities-border.html">Borders</a>
-                        <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                        <a class="collapse-item" href="utilities-other.html">Other</a>
-                    </div>
-                </div> -->
             </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item <?= ($data['section'] == 'kelas') ? 'active' : '' ?>">
                 <a class="nav-link collapsed" href="<?= BURL ?>/admin/kelas">
-                    <i class="fas fa-fw fa-users"></i>
+                    <i class="fas fa-fw fa-building"></i>
                     <span>Kelas</span>
                 </a>
-                <!-- <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Utilities:</h6>
-                        <a class="collapse-item" href="utilities-color.html">Colors</a>
-                        <a class="collapse-item" href="utilities-border.html">Borders</a>
-                        <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                        <a class="collapse-item" href="utilities-other.html">Other</a>
-                    </div>
-                </div> -->
             </li>
 
             <li class="nav-item <?= ($data['section'] == 'pembayaran') ? 'active' : '' ?>">
                 <a class="nav-link collapsed" href="<?= BURL ?>/admin/pembayaran">
-                    <i class="fas fa-fw fa-money"></i>
+                    <i class="fas fa-fw fa-money-bill-wave"></i>
                     <span>Pembayaran</span>
                 </a>
-                <!-- <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Utilities:</h6>
-                        <a class="collapse-item" href="utilities-color.html">Colors</a>
-                        <a class="collapse-item" href="utilities-border.html">Borders</a>
-                        <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                        <a class="collapse-item" href="utilities-other.html">Other</a>
-                    </div>
-                </div> -->
             </li>
+
+            <li class="nav-item <?= ($data['section'] == 'transaksi') ? 'active' : '' ?>">
+                <a class="nav-link collapsed" href="<?= BURL ?>/admin/transaksi">
+                    <i class="fas fa-fw fa-cash-register"></i>
+                    <span>Transaksi</span>
+                </a>
+            </li> 
+            <li class="nav-item <?= ($data['section'] == 'history_transaksi') ? 'active' : '' ?>">
+                <a class="nav-link collapsed" href="<?= BURL ?>/admin/historyTransaksi">
+                    <i class="fas fa-fw fa-clock"></i>
+                    <span>History Transaksi</span>
+                </a>
+            </li> 
 
             <!-- Divider -->
             <hr class="sidebar-divider">

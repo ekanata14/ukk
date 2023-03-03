@@ -19,6 +19,7 @@
 
     <!-- Custom styles for this template-->
     <link href="<?= BURL ?>/public/assets/css/sb-admin-2.css" rel="stylesheet">
+    <link href="<?= BURL ?>/public/assets/css/style.css" rel="stylesheet">
     <link href="<?= BURL ?>/public/assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 </head>
 

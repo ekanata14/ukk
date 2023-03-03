@@ -17,15 +17,18 @@ class Auth extends Controller{
         $user = $this->model("User_model")->getUserByUsername($_POST);
         if($this->model("User_model")->authByUsername($_POST) > 0){ 
             $_SESSION['user'] = [
+                'id' => $user['id'],
                 'username' => $user['username'],
                 'role' => $user['role'],
                 'status' => 'login',
             ];
-           if($user['role'] == '0'){
-            Redirect::to("/admin");
+           if($user['role'] == '0' || $user['role'] == '1'){
+            Redirect::to("admin");
            } else{
-            Redirect::to("/home");
+            Redirect::to("home");
            }
+        } else{
+            Redirect::to("auth");
         }
     }
 

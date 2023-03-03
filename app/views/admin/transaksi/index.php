@@ -14,9 +14,9 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Kelas</h1>
-                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+                        <h1 class="h3 mb-0 text-gray-800">Siswa</h1>
+                        <button onclick="window.print()" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</button>
                     </div>
 
                     <!-- Content Row -->
@@ -26,8 +26,7 @@
                         <?php require_once(__DIR__ . "/../partials/card.php");?>
 
                     <!-- Content Row -->
-                    <?php Flasher::flash();?>
-                    <a href="<?= BURL ?>/admin/tambahKelas" class="btn btn-primary mb-3">Tambah Kelas</a>
+                    <!-- <a href="<?= BURL ?>/admin/tambahSiswa" class="btn btn-primary mb-3">Tambah Siswa</a> -->
                     <div class="row">
                     <div class="col-6 table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -42,8 +41,8 @@
                                     <tfoot>
                                         <tr> 
                                             <th>No</th>
-                                            <th>Nama</th>
-                                            <th>Komptensi Keahlian</th>
+                                            <th>Nama Kelas</th>
+                                            <th>Kompetensi Keahlian</th>
                                             <th>Action</th>
                                         </tr>
                                     </tfoot>
@@ -53,13 +52,9 @@
                                         <tr>
                                             <td><?= $i ?></td>
                                             <td><?= $kelas['nama']?></td>
-                                            <td><?= $kelas['kompetensi_keahlian']?></td>
+                                            <td><?= $kelas['kompetensi_keahlian'] ?></td>
                                             <td>
-                                                <a href="<?= BURL ?>/admin/editKelas/<?= $kelas['id']?>" class="btn btn-warning">Edit</a>
-                                                <form action="<?= BURL?>/admin/deleteKelasAct" method="POST" class="d-inline">
-                                                    <input type="hidden" name="id" value="<?= $kelas['id'] ?>">
-                                                    <button class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus <?= $kelas['nama']?>?')" type="submit">Delete</button> 
-                                                </form>
+                                                <a href="<?= BURL ?>/admin/transaksiDetailKelas/<?= $kelas['id']?>" class="btn btn-primary">Open</a> 
                                             </td>
                                         </tr>
                                         <?php $i++ ?>
@@ -95,4 +90,4 @@
     </a>
 
     <!-- Modal -->
-    <?php require_once(__DIR__ . "/../partials/modal.php"); ?>
+    <?php require_once(__DIR__ . "/../partials/modal.php")?>;

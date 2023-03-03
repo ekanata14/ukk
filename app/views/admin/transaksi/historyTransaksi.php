@@ -14,7 +14,7 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Kelas</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Siswa</h1>
                         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                     </div>
@@ -26,41 +26,49 @@
                         <?php require_once(__DIR__ . "/../partials/card.php");?>
 
                     <!-- Content Row -->
-                    <?php Flasher::flash();?>
-                    <a href="<?= BURL ?>/admin/tambahKelas" class="btn btn-primary mb-3">Tambah Kelas</a>
+                    <!-- <a href="<?= BURL ?>/admin/tambahSiswa" class="btn btn-primary mb-3">Tambah Siswa</a> -->
                     <div class="row">
-                    <div class="col-6 table-responsive">
+                    <div class="col-12 table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Nama Kelas</th>
-                                            <th>Kompetensi Keahlian</th>
-                                            <th>Action</th>
+                                            <th>Tanggal</th>
+                                            <th>Bulan</th>
+                                            <th>Tahun</th>
+                                            <th>Tahun Ajaran</th>
+                                            <th>Nominal</th>
+                                            <th>Siswa Id</th>
+                                            <th>Petugas Id</th>
+                                            <th>Pembayaran Id</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr> 
                                             <th>No</th>
-                                            <th>Nama</th>
-                                            <th>Komptensi Keahlian</th>
-                                            <th>Action</th>
+                                            <th>Tanggal</th>
+                                            <th>Bulan</th>
+                                            <th>Tahun</th>
+                                            <th>Tahun Ajaran</th>
+                                            <th>Nominal</th>
+                                            <th>Siswa Id</th>
+                                            <th>Petugas Id</th>
+                                            <th>Pembayaran Id</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
                                         <?php $i = 1; ?>
-                                        <?php foreach($data['kelas'] as $kelas): ?>
+                                        <?php foreach($data['transaksi'] as $transaksi): ?>
                                         <tr>
                                             <td><?= $i ?></td>
-                                            <td><?= $kelas['nama']?></td>
-                                            <td><?= $kelas['kompetensi_keahlian']?></td>
-                                            <td>
-                                                <a href="<?= BURL ?>/admin/editKelas/<?= $kelas['id']?>" class="btn btn-warning">Edit</a>
-                                                <form action="<?= BURL?>/admin/deleteKelasAct" method="POST" class="d-inline">
-                                                    <input type="hidden" name="id" value="<?= $kelas['id'] ?>">
-                                                    <button class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus <?= $kelas['nama']?>?')" type="submit">Delete</button> 
-                                                </form>
-                                            </td>
+                                            <td><?= $transaksi['tanggal_bayar']?></td>
+                                            <td><?= $transaksi['bulan_dibayar']?></td>
+                                            <td><?= $transaksi['tahun_dibayar']?></td>
+                                            <td><?= $transaksi['tahun_ajaran']?></td>
+                                            <td><?= $transaksi['nominal']?></td>
+                                            <td><?= $transaksi['siswa_id']?></td>
+                                            <td><?= $transaksi['petugas_id']?></td>
+                                            <td><?= $transaksi['pembayaran_id']?></td>
                                         </tr>
                                         <?php $i++ ?>
                                         <?php endforeach ?>
